@@ -1,7 +1,7 @@
+from re import L
 from sys import winver
 from tkinter import*
 from PIL import Image, ImageTk
-import re
 import time as tm
 import tkinter as tk
 from numpy.lib.arraypad import pad
@@ -88,8 +88,6 @@ def Submit():
 
 def getCurrentUser():
     df = pd.read_csv("current_user.csv",usecols=[0,1,2])
-    # return df["FirstName"].iloc[0]
-
     user_values.append(df.iloc[0,0])
     user_values.append(df.iloc[0,1])
     user_values.append(df.iloc[0,2])
@@ -262,8 +260,6 @@ def recommendItems():
                               (frequent_itemsets['support'] >= 0.04)]
     recP = items['itemsets']
 
-    # print(__name__)
-
     class SampleApp(tk.Tk):
         def __init__(self, *args, **kwargs):
             tk.Tk.__init__(self, *args, **kwargs)
@@ -306,7 +302,12 @@ def recommendItems():
                     plt.yticks([])
                     plt.autoscale()
                 plt.show()
-                label=tk.Label(root,text=str(value[0])+'+'+str(value[1])+' = Rs.'+str(int(total)),font=('Tahoma',30),fg='white',bg='black')
+                if(len(value)<=2):
+                    label=tk.Label(root,text=str(value[0])+'+'+str(value[1])+' = Rs.'+str(int(total)),font=('Tahoma',30),fg='white',bg='black')
+
+                else:
+                     label=tk.Label(root,text=str(value[0])+'+'+str(value[1])+"+"+str(value[2])+' = Rs.'+str(int(total)),font=('Tahoma',30),fg='white',bg='black')
+
 
             except:
                 roo = tk.Tk()
@@ -334,10 +335,6 @@ search.place(x=150, y=390, width=1000)
 listbox = Listbox(root, width=166, height=30)
 listbox.place(x=150, y=450)
 
-
-# listP = list(set([str(i)
-#                   for(i) in pd.read_csv('priceList.csv')['Product']]))
-
 # Logout button
 logout = Button(root, bg="green", text="Logout", command=logout, font=(
     "times new roman", 15), padx=5, pady=2, bd=0).place(x=1800, y=5)
@@ -357,13 +354,12 @@ listP = list(set([str(i)
 # update the list item from start
 update(listP)
 
+# get the current user info 
 
 getCurrentUser()
-
 user_name = user_values[0]
 surname = user_values[1]
 contact = user_values[2]
-
 
 
 

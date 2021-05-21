@@ -3,8 +3,7 @@ from tkinter import *
 from PIL import Image
 import tkinter.messagebox
 import csv
-import os
-import pandas as pd
+# import pandas as pd
 import re
 
 
@@ -45,17 +44,18 @@ class Login:
             "times new roman", 15), bg="lightgray")
         self.txt_password.place(x=230, y=240, width=250)
 
-        btn_login = Button(frame1, text="Log In", font=("times new roman", 15, "bold"),
+        Button(frame1, text="Log In", font=("times new roman", 15, "bold"),
                            cursor="hand2", bg="lightgreen", activebackground="white", command=self.login_data).place(x=230, y=300, width=250, height=35)
 
         hr = Label(frame1, bg="lightgray").place(
             x=210, y=410, width=310, height=2)
 
-        btn_SignUp = Button(frame1, text="Sign Up ", font=("times new roman", 15, "bold"),
+        Button(frame1, text="Sign Up ", font=("times new roman", 15, "bold"),
                             cursor="hand2", bg="lightgreen", command=self.callNewScreen).place(x=230, y=360, width=250, height=35)
 
-        btn_forget = Button(frame1, text="Forget Password ?", font=("times new roman", 13),
+        Button(frame1, text="Forget Password ?", font=("times new roman", 13),
                             bg="white", fg="#00759E", bd=0, command=self.forget_password).place(x=280, y=420)
+
 
 # since i want to use the upper entry data var
     def login_data(self):
@@ -63,7 +63,10 @@ class Login:
         email_val = self.txt_email.get()
         password_val = self.txt_password.get()
 
-        x = 0
+        print(email_val)
+        print(password_val)
+
+        
         email_regex = re.compile(r"[^@]+@[^@]+\.[^@]+")
 
         if(email_val == "" or password_val == ""):
@@ -72,46 +75,26 @@ class Login:
             tkinter.messagebox.showinfo(
                 'Error', "Please Enter valid email Address")
         else:
+            try:
+                with open('users_db.csv', 'r') as csv_file:
+                    csv_reader = csv.reader(csv_file)
+                    for row in csv_reader:
+                        if row[3]==str(email_val) and row[4]==str(password_val):
 
-            global index
-            global file_size
-            with open('users_db.csv', 'r') as csv_file:
-
-                csv_reader = csv.reader(csv_file)
-                index = 2
-
-                for row in csv_reader:
-                    if(row[3]==""):
-                        break
-                    if str(row[3]) == str(email_val):
-                        if(str(row[4]) == str(password_val)):
-                            print("yaha aa gya hai")
-                            with open('current_user.csv', 'w', newline='') as file:
+                            with open('current_user.csv', 'w', newline=None) as file:
                                 writer = csv.writer(file)
                                 writer.writerow(
                                     ["FirstName", "LastName", "PhoneNumber"])
                                 writer.writerow(
                                     [str(row[0]), str(row[1]), str(row[2])])
-                            x = 2
                             break
-                        else:
-                            x = 1
-                            tkinter.messagebox.showinfo(
-                                'Error', 'UserName and Password are not matching')
-                            break
-                    index = index + 1
-                if x == 0:
-                    print(str(email_val)+" "+str(password_val))
+                root.destroy()
+                import mainPage      
+            except IndexError:
                     tkinter.messagebox.showinfo(
                         'Login', 'User Not Exits Please Register')
 
-            if(os.path.isfile("current_user.csv") == True):
-                root.destroy()
-                import mainPage
-
-    def validation(self, current_email, current_password):
-        if(current_email == "" or current_password == ""):
-            return False
+               
 
     def forget_password(self):
         root.destroy()
