@@ -1,11 +1,14 @@
-		Innovate Yourself		
+		 Product Bill 		
 		-----------------------		
-2021/5/23			14:46
+Date : 2021/5/23			 Time : 16:27
 
-Product name											 | Price
-colgate [80 Rs] Per Pack					160
-Pomegranate [120 Rs] Per kg					240
+Product name						 Price
+Ice Cream [125 Rs] Per Pack 						125
+milk [30 Rs ] Per litre 						90
+Butter [30 Rs] Per 30 gram						60
+colgate [80 Rs] Per Pack						240
+Pomegranate [120 Rs] Per kg						480
 
 
 
- Payable Amount:	400 Rs 
+ Payable Amount:995 Rs 

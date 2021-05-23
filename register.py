@@ -1,4 +1,3 @@
-from os.path import getsize
 from tkinter import *
 from tkinter import ttk
 from PIL import Image
@@ -87,11 +86,6 @@ class Register:
         self.cmb_quest.place(x=100,y=310,width=250)
         self.cmb_quest.current(0)
 
-
-
-
-        
-
         Label(frame1, text="Confirm Password", font=(
             "times new roman", 15, "bold"), bg="white", fg="gray").place(x=400, y=220)
         self.txt_confirm_password = Entry(frame1, show="*", font=(
@@ -163,11 +157,11 @@ class Register:
 
                 except IndexError:
 
-                    with open('users_db.csv','a',newline=None) as file:
+                    with open('users_db.csv','a',newline="") as file:
                         writer = csv.writer(file)
                         writer.writerow([first_name,last_name,contact_val,email_val,password_val,confirm_password,selected_ques,answer])
 
-                    with open ('current_user.csv','w') as file:
+                    with open ('current_user.csv','w',newline="") as file:
                         writer = csv.writer(file)
                         writer.writerow(["FirstName","LastName","PhoneNumber"])
                         writer.writerow([first_name,last_name,contact_val])

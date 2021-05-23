@@ -195,7 +195,6 @@ def check(e):
 
 
 def Printbill():
-
     if(len(ItemsPurchased)==0):
         tkinter.messagebox.showinfo("CartMessage","Cart is Empty")
     elif(os.path.isfile('print.txt')):
@@ -203,19 +202,19 @@ def Printbill():
     else:
 
         with open('print.txt', 'a') as file:
-            file.write('\t\tInnovate Yourself\t\t\n')
+            file.write('\t\t Product Bill \t\t\n')
             file.write('\t\t-----------------------\t\t\n')
-            file.write(f'{DT}\t\t\t{q}\n\n')
-            file.write('Product name\t\t\t\t\t\t\t\t\t\t\t | Price\n')
+            file.write(f'Date : {DT}\t\t\t Time : {q}\n\n')
+            file.write('Product name\t\t\t\t\t\t Price\n')
         
         i=0
         for i,j in zip(ItemsPurchased,Price):
             with open('print.txt','a') as file:
-                file.write(f'{i}\t\t\t\t\t{j}\n')
+                file.write(f'{i}\t\t\t\t\t\t{j}\n')
 
         with open('print.txt', 'a') as file:
 
-            file.write(f'\n\n\n Payable Amount:\t{amount} Rs \n')
+            file.write(f'\n\n\n Payable Amount:{amount} Rs \n')
             
         os.startfile("print.txt",)  # print bill using printer
 
@@ -327,24 +326,10 @@ listbox.place(x=150, y=450)
 logout = Button(root, bg="green", text="Logout", command=logout, font=(
     "times new roman", 15), padx=5, pady=2, bd=0).place(x=1800, y=5)
 
-# quantity option dropdown
-# clicked = StringVar()
-# clicked.set("Quantity")
-# quantity = OptionMenu(root, clicked, "1", "2", "3", "4", "5")
-# quantity.place(x=1160, y=395)
-# quantity.config(bd=0)
-
-
 cmb_quest = ttk.Combobox(root,font=("times new roman",15),state="readonly",justify=CENTER)
 cmb_quest.place(x=1160, y=390,height=35,width=100)
 cmb_quest['values']  = ("Quantity","1","2","3","4","5")
 cmb_quest.current(0)
-
-
-
-
-
-
 
 # list of food items
 listP = list(set([str(i)
@@ -359,8 +344,6 @@ getCurrentUser()
 user_name = user_values[0]
 surname = user_values[1]
 contact = user_values[2]
-
-
 
 user_name = Label(root,text="Username: "+str(user_name),font=("times new roman",15,"bold"),bg="green")
 user_name.place(x=1300,y=5)
@@ -385,7 +368,6 @@ hr = Label(root, bg="black",).place(x=1480, y=300, width=400, height=2)
 add = Button(root, text="ADD",font=("times new roman",15), bg="gray", padx=80,
              command=add, bd=0,fg="white").place(x=1160, y=500)
 
-
 # Print bill Button 
 
 print_bill = Button(root,text="Print Bill",font=("times new roman",15,"bold"),fg="white",bg="gray",command=Printbill,bd = 0,padx=65)
@@ -398,16 +380,11 @@ recommend.place(x=1160,y=620)
 submit = Button(root,text="Submit",font=("times new roman",15,"bold"),fg="white",bg="gray",command=Submit,bd = 0,padx=73)
 submit.place(x=1160,y=680)
 
-
-
 # create a binding on the  listbox onclick
 
 listbox.bind("<<ListboxSelect>>", fillout)
 
 search.bind("<KeyRelease>", check)
-
-# listbox.bind("<<ListboxSelect>>",fillout)
-
 
 
 # root.attributes("fullscreen",True)

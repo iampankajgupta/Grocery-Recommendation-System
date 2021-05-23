@@ -33,14 +33,6 @@ class Forgot:
 
         self.question = Label(frame1, text="Security Question", font=(
             "times new roman", 15, "bold"), bg="white", fg="gray").place(x=230, y=110)
-        # self.clicked = StringVar()
-
-        # self.clicked.set("Select")
-        # self.security_question = OptionMenu(
-        #     root, self.clicked, "Select", "PetName", "x", "y", "z")
-        # self.security_question.place(x=530, y=250, width=250)
-        # self.security_question.config(bd=0, bg="lightgray")
-
 
         self.cmb_quest = ttk.Combobox(frame1,font=("times new roman",15),state="readonly",justify=CENTER,background="lightgray")
 
@@ -95,57 +87,57 @@ class Forgot:
         print(security_question)
 
 
-        # email_regex = re.compile(r"[^@]+@[^@]+\.[^@]+")
+        email_regex = re.compile(r"[^@]+@[^@]+\.[^@]+")
 
-        # if(email_val == "" or new_password == ""):
-        #     tkinter.messagebox.showinfo('Error', "Please fill all the fields")
-        # elif (email_regex.match(email_val) == None):
-        #     tkinter.messagebox.showinfo(
-        #         'Error', "Please Enter valid email Address")
-        # elif (ans == ""):
-        #     tkinter.messagebox.showinfo(
-        #         'Error', "Answer Field is Empty")
-        # elif (security_question == "Select"):
-        #     tkinter.messagebox.showinfo(
-        #         'Error', "Please Select the valid Security Question")
+        if(email_val == "" or new_password == ""):
+            tkinter.messagebox.showinfo('Error', "Please fill all the fields")
+        elif (email_regex.match(email_val) == None):
+            tkinter.messagebox.showinfo(
+                'Error', "Please Enter valid email Address")
+        elif (ans == ""):
+            tkinter.messagebox.showinfo(
+                'Error', "Answer Field is Empty")
+        elif (security_question == "Select"):
+            tkinter.messagebox.showinfo(
+                'Error', "Please Select the valid Security Question")
 
-        # else:
+        else:
 
-        #     user_values = []
-        #     updated_row = []
-        #     try:
-        #         with open('users_db.csv', 'r') as csv_file:
-        #             csv_reader = csv.reader(csv_file)
-        #             for row in csv_reader:
-        #                 if row[3] == email_val and row[6] == security_question and row[7] == ans:
-        #                     updated_row.append(row)
-        #                 else:
-        #                     user_values.append(row)
+            user_values = []
+            updated_row = []
+            try:
+                with open('users_db.csv', 'r') as csv_file:
+                    csv_reader = csv.reader(csv_file)
+                    for row in csv_reader:
+                        if row[3] == email_val and row[6] == security_question and row[7] == ans:
+                            updated_row.append(row)
+                        else:
+                            user_values.append(row)
 
-        #         # root.destroy()
-        #         # import login
-        #     except IndexError:
-        #         # if(len(updated_row) != 0):
+                root.destroy()
+                import login
+            except IndexError:
+                # if(len(updated_row) != 0):
 
-        #         updated_row[4] = new_password
-        #         updated_row[5] = new_password
+                updated_row[4] = new_password
+                updated_row[5] = new_password
 
-        #         user_values.append(updated_row)
+                user_values.append(updated_row)
 
-        #         print(user_values)
+                print(user_values)
   
-        #             # f = open("user_db.csv", 'w+')
-        #             # f.close()
+                    # f = open("user_db.csv", 'w+')
+                    # f.close()
 
-        #             # with open('users_db.csv', 'w', newline='') as file:
-        #             #     writer = csv.writer(file)
-        #             #     writer.writerows(user_values)
+                    # with open('users_db.csv', 'w', newline='') as file:
+                    #     writer = csv.writer(file)
+                    #     writer.writerows(user_values)
 
-        #         # else:
+                # else:
 
-        #             # tkinter.messagebox.showinfo(
-        #             #     'Login', 'User Not Exits')
-        # import forgot
+                    # tkinter.messagebox.showinfo(
+                    #     'Login', 'User Not Exits')
+        import forgot
 
     def callNewScreen(self):
         self.root.destroy()
