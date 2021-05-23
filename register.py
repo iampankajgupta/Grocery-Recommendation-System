@@ -87,6 +87,11 @@ class Register:
         self.cmb_quest.place(x=100,y=310,width=250)
         self.cmb_quest.current(0)
 
+
+
+
+        
+
         Label(frame1, text="Confirm Password", font=(
             "times new roman", 15, "bold"), bg="white", fg="gray").place(x=400, y=220)
         self.txt_confirm_password = Entry(frame1, show="*", font=(

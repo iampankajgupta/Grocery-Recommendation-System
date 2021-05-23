@@ -1,6 +1,7 @@
 from re import L
 from sys import winver
 from tkinter import*
+from tkinter import ttk
 from PIL import Image, ImageTk
 import time as tm
 import tkinter as tk
@@ -62,7 +63,7 @@ def Submit():
     dataDict = {}
     items = ""
     for ele in ItemsPurchased:
-        items+=ele+","
+        items+=ele.rstrip()+","
 
     dataset = [DT, q, user_values[0],contact,items,amount]
 
@@ -108,7 +109,7 @@ def add():
     
     searchItem = search.get()
 
-    current = str(clicked.get())
+    current = str(cmb_quest.get())
 
     if(checkItem(searchItem)):
 
@@ -116,14 +117,7 @@ def add():
             tkinter.messagebox.showinfo(
                 "Quantity", "Please Select the Valid Quantity")
         else:
-            # productName = ""
-            # for ele in searchItem:
-            #     if ele != "[":
-            #         productName += ele
-            #     else:
-            #         break
-            # productName = remove_all_extra_spaces(productName)
-            
+        
             currentProductAmount = int(getCurrentProductAmount(searchItem))
             totalCurrentProductAmount = int(current) * currentProductAmount
 
@@ -137,10 +131,10 @@ def add():
             row += 25
             num += 1
 
-            orderItem = Label(root, text=str(num)+".  "+str(searchItem).upper() + "  1 x "+str(current) +
+            orderItem = Label(root, text=str(searchItem).upper() + "  1 x "+str(current) +
                               "--> "+str(totalCurrentProductAmount)+" Rs", font=("times new roman", 11, "bold"), bg="green")
             orderItem.place(x=1470, y=280+row)
-            clicked.set("Quantity")
+            cmb_quest.current(0)
          
 
             total.config(text="Total Amount : "+str(amount)+" Rs")
@@ -165,10 +159,6 @@ def getCurrentProductAmount(data):
             realPrice += ele
 
     return int(realPrice)
-
-
-def remove_all_extra_spaces(string):
-    return " ".join(string.split())
 
 
 def checkItem(data):
@@ -307,9 +297,7 @@ def recommendItems():
 
                 else:
                      label=tk.Label(root,text=str(value[0])+'+'+str(value[1])+"+"+str(value[2])+' = Rs.'+str(int(total)),font=('Tahoma',30),fg='white',bg='black')
-
-
-            except:
+            except Exception:
                 roo = tk.Tk()
                 roo.title('Offer for you...')
                 label = tk.Label(roo, text='Something went wrong!!!', font=(
@@ -340,11 +328,22 @@ logout = Button(root, bg="green", text="Logout", command=logout, font=(
     "times new roman", 15), padx=5, pady=2, bd=0).place(x=1800, y=5)
 
 # quantity option dropdown
-clicked = StringVar()
-clicked.set("Quantity")
-quantity = OptionMenu(root, clicked, "1", "2", "3", "4", "5")
-quantity.place(x=1160, y=395)
-quantity.config(bd=0)
+# clicked = StringVar()
+# clicked.set("Quantity")
+# quantity = OptionMenu(root, clicked, "1", "2", "3", "4", "5")
+# quantity.place(x=1160, y=395)
+# quantity.config(bd=0)
+
+
+cmb_quest = ttk.Combobox(root,font=("times new roman",15),state="readonly",justify=CENTER)
+cmb_quest.place(x=1160, y=390,height=35,width=100)
+cmb_quest['values']  = ("Quantity","1","2","3","4","5")
+cmb_quest.current(0)
+
+
+
+
+
 
 
 # list of food items

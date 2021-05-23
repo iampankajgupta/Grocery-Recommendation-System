@@ -31,7 +31,7 @@ class Forgot:
         title = Label(frame1, text="FORGOT PASSWORD", font=(
             "times new roman", 20, "bold"), bg="white", fg="green").place(x=210, y=50)
 
-        Label(frame1, text="Security Question", font=(
+        self.question = Label(frame1, text="Security Question", font=(
             "times new roman", 15, "bold"), bg="white", fg="gray").place(x=230, y=110)
         # self.clicked = StringVar()
 
@@ -84,6 +84,7 @@ class Forgot:
 # since i want to use the upper entry data var
 
     def change_password(self):
+
         security_question = self.cmb_quest.get()
         ans = self.txt_answer.get()
 
