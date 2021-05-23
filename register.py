@@ -160,6 +160,7 @@ class Register:
                     with open('users_db.csv','a',newline="") as file:
                         writer = csv.writer(file)
                         writer.writerow([first_name,last_name,contact_val,email_val,password_val,confirm_password,selected_ques,answer])
+                        print("yaha aa gya hai")
 
                     with open ('current_user.csv','w',newline="") as file:
                         writer = csv.writer(file)

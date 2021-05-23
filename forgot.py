@@ -49,7 +49,7 @@ class Forgot:
         self.txt_answer.place(x=230, y=230, width=250)
 
         # ------------------------- Contact
-        email = Label(frame1, text="Email", font=(
+        Label(frame1, text="Email", font=(
             "times new roman", 15, "bold"), bg="white", fg="gray").place(x=230, y=260)
         self.txt_email = Entry(frame1, font=(
             "times new roman", 15), bg="lightgray")
@@ -63,11 +63,11 @@ class Forgot:
             "times new roman", 15), bg="lightgray")
         self.txt_new_password.place(x=230, y=350, width=250)
 
-        Button(frame1, text="CHANGE PASSWORD", font=("times new roman", 15, "bold"),
+        Button(frame1, text="RESET PASSWORD", font=("times new roman", 15, "bold"),
                cursor="hand2", bg="lightgreen", activebackground="white", command=self.change_password).place(x=230, y=400, width=250, height=35)
 
         hr = Label(frame1, bg="lightgray").place(
-            x=210, y=442, width=330, height=2)
+            x=200, y=442, width=310, height=2)
 
         Button(frame1, text="LOG IN ", font=("times new roman", 15, "bold"),
                             cursor="hand2", bg="lightgreen", command=self.callNewScreen).place(x=230, y=450, width=250, height=35)
@@ -82,10 +82,6 @@ class Forgot:
 
         email_val = self.txt_email.get()
         new_password = self.txt_new_password.get()
-
-
-        print(security_question)
-
 
         email_regex = re.compile(r"[^@]+@[^@]+\.[^@]+")
 
@@ -104,40 +100,37 @@ class Forgot:
         else:
 
             user_values = []
-            updated_row = []
+        
+            found = False
             try:
                 with open('users_db.csv', 'r') as csv_file:
                     csv_reader = csv.reader(csv_file)
                     for row in csv_reader:
-                        if row[3] == email_val and row[6] == security_question and row[7] == ans:
-                            updated_row.append(row)
+                        if(row[3]==email_val):
+                            if(row[6]==security_question):
+                                if(row[7]==ans):
+                                    row[4] =  new_password
+                                    row[5] = new_password
+                                    found = True
+                                    user_values.append(row)
                         else:
                             user_values.append(row)
+                if(found==False):
+                    tkinter.messagebox.showerror("Error","User Not found")
+                else:
 
-                root.destroy()
-                import login
-            except IndexError:
-                # if(len(updated_row) != 0):
+                    with open ("users_db.csv",'w',newline='') as file:
+                        writer = csv.writer(file);
+                        for row in user_values:
+                            writer.writerow(row)
 
-                updated_row[4] = new_password
-                updated_row[5] = new_password
+                    root.destroy()
+                    import login
+            except Exception:
+                print()
 
-                user_values.append(updated_row)
 
-                print(user_values)
-  
-                    # f = open("user_db.csv", 'w+')
-                    # f.close()
-
-                    # with open('users_db.csv', 'w', newline='') as file:
-                    #     writer = csv.writer(file)
-                    #     writer.writerows(user_values)
-
-                # else:
-
-                    # tkinter.messagebox.showinfo(
-                    #     'Login', 'User Not Exits')
-        import forgot
+        # import forgot
 
     def callNewScreen(self):
         self.root.destroy()

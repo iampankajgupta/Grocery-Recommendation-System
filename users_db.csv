@@ -2,7 +2,6 @@ FirstName,LastName,Contact,Email,Password,Confirm_Password,Security_Question,Ans
 we,we,9082778154,we@gmail.com,we,we,PetName,we
 re,re,9082778154,re@gmail.com,re,re,PetName,re
 wq,wq,9082778154,wq@gmail.com,wq,wq,PetName,wq
-nn,nn,9082778154,nn@gmail.com,nn,nn,PetName,nn
+nn,nn,9082778154,nn@gmail.com,sql,sql,PetName,nn
 here,r,9082778154,here@gmail.com,here,here,PetName,abc
 there,there,9082778154,there@gmail.com,there,there,PetName,there
-gg,gg,9082778154,gg@gmail.com,gg,gg,PetName,gg

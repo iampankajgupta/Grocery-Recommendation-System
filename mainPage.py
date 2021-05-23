@@ -281,6 +281,9 @@ def recommendItems():
                         first=i
                     if str(value[1])==i[:len(str(value[1]))]:
                         second=i
+
+                print(first)
+                print(second)
                
                 for j in [first,second,'recommend_price.png']:
                     plt.subplot(1,3,[first,second,'recommend_price.png'].index(j)+1)
