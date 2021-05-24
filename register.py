@@ -147,33 +147,32 @@ class Register:
                     'Error', "Please Select the Valid Security Question")
 
             else:
-                f = open("users_db.csv",'r')
-                reader = csv.reader(f)
-                try:
-                    for row in reader:
-                        if(row[3]==str(email_val)):
-                            tkinter.messagebox.showinfo("Error","User Already Registered Please Login !!")
-                            break
+                with open("users_db.csv",'r') as file:
+                    reader = csv.reader(file)
+                    try:
+                        for row in reader:
+                            if(row[3]==str(email_val)):
+                                tkinter.messagebox.showinfo("Error","User Already Registered Please Login !!")
+                                break
 
-                except IndexError:
+                    except IndexError:
 
-                    with open('users_db.csv','a',newline="") as file:
-                        writer = csv.writer(file)
-                        writer.writerow([first_name,last_name,contact_val,email_val,password_val,confirm_password,selected_ques,answer])
-                        print("yaha aa gya hai")
+                        with open('users_db.csv','a',newline="") as file:
+                            writer = csv.writer(file)
+                            writer.writerow([first_name,last_name,contact_val,email_val,password_val,confirm_password,selected_ques,answer])
 
-                    with open ('current_user.csv','w',newline="") as file:
-                        writer = csv.writer(file)
-                        writer.writerow(["FirstName","LastName","PhoneNumber"])
-                        writer.writerow([first_name,last_name,contact_val])
+                        with open ('current_user.csv','w',newline="") as file:
+                            writer = csv.writer(file)
+                            writer.writerow(["FirstName","LastName","PhoneNumber"])
+                            writer.writerow([first_name,last_name,contact_val])
 
-                    self.root.destroy()
-                    import mainPage
+                        self.root.withdraw()
+                        os.system("mainPage.py")
 
 
     def callNewScreen(self):
-            self.root.destroy()
-            import login
+            root.withdraw()
+            os.system("login.py")
 
 
 root = Tk()

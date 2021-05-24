@@ -1,8 +1,9 @@
-from os.path import getsize
+
 from tkinter import *
 from PIL import Image
 import tkinter.messagebox
 import csv
+import os
 # import pandas as pd
 import re
 
