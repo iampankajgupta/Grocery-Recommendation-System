@@ -1,5 +1,5 @@
-# from re import L
-# from sys import winver
+from re import L
+from sys import winver
 from tkinter import*
 from tkinter import ttk
 from PIL import Image, ImageTk
@@ -94,6 +94,10 @@ def getCurrentUser():
     user_values.append(df.iloc[0,2])
 
     return user_values
+
+def login():
+    root.destroy()
+    import login
 
 def add():
     global amount
@@ -190,29 +194,29 @@ def check(e):
     update(data)
 
 
-# def Printbill():
-#     if(len(ItemsPurchased)==0):
-#         tkinter.messagebox.showinfo("CartMessage","Cart is Empty")
-#     elif(os.path.isfile('print.txt')):
-#         os.remove('print.txt')
-#     else:
+def Printbill():
+    if(len(ItemsPurchased)==0):
+        tkinter.messagebox.showinfo("CartMessage","Cart is Empty")
+    elif(os.path.isfile('print.txt')):
+        os.remove('print.txt')
+    else:
 
-#         with open('print.txt', 'a') as file:
-#             file.write('\t\t Product Bill \t\t\n')
-#             file.write('\t\t-----------------------\t\t\n')
-#             file.write(f'Date : {DT}\t\t\t Time : {q}\n\n')
-#             file.write('Product name\t\t\t\t\t\t Price\n')
+        with open('print.txt', 'a') as file:
+            file.write('\t\t Product Bill \t\t\n')
+            file.write('\t\t-----------------------\t\t\n')
+            file.write(f'Date : {DT}\t\t\t Time : {q}\n\n')
+            file.write('Product name\t\t\t\t\t\t Price\n')
         
-#         i=0
-#         for i,j in zip(ItemsPurchased,Price):
-#             with open('print.txt','a') as file:
-#                 file.write(f'{i}\t\t\t\t\t\t{j}\n')
+        i=0
+        for i,j in zip(ItemsPurchased,Price):
+            with open('print.txt','a') as file:
+                file.write(f'{i}\t\t\t\t\t\t{j}\n')
 
-#         with open('print.txt', 'a') as file:
+        with open('print.txt', 'a') as file:
 
-#             file.write(f'\n\n\n Payable Amount:{amount} Rs \n')
+            file.write(f'\n\n\n Payable Amount:{amount} Rs \n')
             
-#         os.startfile("print.txt",)  # print bill using printer
+        os.startfile("print.txt",)  # print bill using printer
 
 
 # update entry with list box
@@ -226,8 +230,8 @@ def fillout(e):
 
 def logout():
     os.remove("current_user.csv")
-    root.withdraw();
-    os.system("login.py")
+    root.destroy();
+    import login
 
 def recommendItems():
     df = pd.read_csv('orders.csv')
@@ -277,6 +281,9 @@ def recommendItems():
                         first=i
                     if str(value[1])==i[:len(str(value[1]))]:
                         second=i
+
+                print(first)
+                print(second)
                
                 for j in [first,second,'recommend_price.png']:
                     plt.subplot(1,3,[first,second,'recommend_price.png'].index(j)+1)
@@ -366,8 +373,8 @@ add = Button(root, text="ADD",font=("times new roman",15), bg="gray", padx=80,
 
 # Print bill Button 
 
-# print_bill = Button(root,text="Print Bill",font=("times new roman",15,"bold"),fg="white",bg="gray",command=Printbill,bd = 0,padx=65)
-# print_bill.place(x=1160,y=560)
+print_bill = Button(root,text="Print Bill",font=("times new roman",15,"bold"),fg="white",bg="gray",command=Printbill,bd = 0,padx=65)
+print_bill.place(x=1160,y=560)
 
 
 recommend = Button(root,text="Recommend",font=("times new roman",15,"bold"),fg="white",bg="gray",command=recommendItems,bd = 0,padx=50)

@@ -166,13 +166,13 @@ class Register:
                             writer.writerow(["FirstName","LastName","PhoneNumber"])
                             writer.writerow([first_name,last_name,contact_val])
 
-                        self.root.withdraw()
-                        os.system("mainPage.py")
+                        self.root.destroy()
+                        import mainPage
 
 
     def callNewScreen(self):
-            root.withdraw()
-            os.system("login.py")
+            self.root.destroy()
+            import login
 
 
 root = Tk()

@@ -1,6 +1,6 @@
 from os.path import getsize
 from tkinter import *
-import tkinter.ttk as ttk
+from tkinter import ttk
 from PIL import Image
 import tkinter.messagebox
 import csv
@@ -34,7 +34,7 @@ class Forgot:
         self.question = Label(frame1, text="Security Question", font=(
             "times new roman", 15, "bold"), bg="white", fg="gray").place(x=230, y=110)
 
-        self.cmb_quest = ttk.Combobox(frame1,font=("times new roman",15),state="readonly",justify=CENTER)
+        self.cmb_quest = ttk.Combobox(frame1,font=("times new roman",15),state="readonly",justify=CENTER,background="lightgray")
 
         self.cmb_quest['values']  = ("Select","PetName","Your Birth Place","Your Best Friend Name")
 
@@ -73,7 +73,7 @@ class Forgot:
                             cursor="hand2", bg="lightgreen", command=self.callNewScreen).place(x=230, y=450, width=250, height=35)
 
 
- 
+# since i want to use the upper entry data var
 
     def change_password(self):
 
@@ -133,8 +133,8 @@ class Forgot:
         # import forgot
 
     def callNewScreen(self):
-        self.root.withdraw()
-        os.system("login.py")
+        self.root.destroy()
+        import login
 
 
 root = Tk()
